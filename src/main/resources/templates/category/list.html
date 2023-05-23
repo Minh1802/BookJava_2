@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www/thymeleaf.org/thymeleaf-extras-springsecurity4"
+      lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Category List</title>
+  <th:block th:replace="layout :: link-css"></th:block>
+</head>
+<body>
+<th:block th:replace="layout :: header"></th:block>
+<div class="container" style=" padding: 0 200px;">
+  <h1 th:text=${title}></h1>
+  <table class="table">
+
+    <tr>
+
+      <th>ID</th>
+      <th>Name</th>
+      <th style="text-align: center;" >Action</th>
+
+    </tr>
+
+    <tr th:each="category : ${categorys}">
+      <td th:text="${category.id}"></td>
+      <td th:text="${category.name}"></td>
+
+<!--      <td sec:authorize="hasAnyAuthority('ADMIN')" style="text-align: center;">-->
+<!--        <a th:href="@{/categorys/add" class="btn btn-warning">Edit</a>-->
+<!--        <a th:href="@{/categorys/edit(id=__${book.id}__)}" class="btn btn-primary">Edit</a>-->
+<!--        <a th:href="@{/categorys/delete(id=__${book.id}__)}" onclick="deleteBook(this); return false;" class="text-danger">Delete</a>-->
+<!--      </td>-->
+
+
+      <td style="text-align: center;">
+        <a th:href="@{/categorys/add}" class="btn btn-warning">Add</a>
+        <a th:href="@{/categorys/edit/{id}(id=${category.id})}" class="btn btn-primary">Edit</a>
+        <a th:href="@{/categorys/delete/{id}(id=${category.id})}" onclick="return confirm('Are you sure?')" class="btn btn-danger">Delete</a>
+
+      </td>
+    </tr>
+  </table>
+</div>
+<th:block th:replace="layout :: footer"></th:block>
+</body>
+</html>
