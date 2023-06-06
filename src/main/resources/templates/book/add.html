@@ -7,7 +7,7 @@
 </head>
 <body>
 <th:block th:replace="layout :: header"></th:block>
-<div class="container">
+<div class="container" style="padding: 0 200px;">
     <h1>Add Book</h1>
     <form th:action="@{/books/add}" th:object="${book}" method="post">
 
